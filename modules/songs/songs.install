@@ -10,7 +10,7 @@
  */
 function songs_install() {
 
-    //create table AND MORE STUFF 2222 1pm
+    //create table AND MORE STUFF 2222 1pm more
     $connection = \Drupal::database();
 
     $new_table = 'songs';
