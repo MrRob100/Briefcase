@@ -46,7 +46,7 @@ sites/*/*settings*.php
 /.csslintrc
 /.eslintignore
 /.eslintrc.json
-/.htaccess
+# /.htaccess
 /autoload.php
 
 /example.gitignore
