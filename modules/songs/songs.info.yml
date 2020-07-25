@@ -1,0 +1,6 @@
+name: Songs
+description: Upload and manaage songs uploaded
+package: Custom
+
+type: module
+core_version_requirement: 8.x || 9.x

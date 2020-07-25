@@ -1,0 +1,14 @@
+uuid: 0fc7a5a3-ce78-421f-ac5c-73652ff0225c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - Robarnold100@hotmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''
