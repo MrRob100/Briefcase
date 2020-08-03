@@ -1,0 +1,17 @@
+songs.form:
+  path: 'admin/songs'
+  defaults:
+    # _controller: '\Drupal\songs\Controller\SongsController::index'
+    _form: '\Drupal\songs\Form\SongsForm'
+    _title: 'songsform'
+  requirements:
+    _permission: 'administer site configuration'
+
+#works
+tunes.page:
+  path: 'home'
+  defaults:
+    _controller: '\Drupal\songs\Controller\SongsController::index'
+    _title: 'songsform3'
+  requirements:
+    _permission: 'access content'

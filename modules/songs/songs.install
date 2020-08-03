@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the booking_journey_logger module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function songs_install() {
+
+    //create table AND MORE STUFF 2222 1pm more
+    $connection = \Drupal::database();
+
+    $new_table = 'songs';
+    $schema = [
+        'fields' => [
+            'id' => ['type' => 'serial', 'not null' => TRUE],
+            'name' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE],
+            'likes' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0],
+            'other' => ['type' => 'varchar', 'length' => 255],
+            'time_uploaded' => ['mysql_type' => 'timestamp', 'mysql_default' => 'CURRENT_TIMESTAMP', 'not null' => TRUE],
+        ],
+        'primary key' => ['id'],
+    ];
+
+    try {
+        $connection->schema()->createTable($new_table, $schema);
+    } catch (\Exception $e) {
+        \Drupal::logger('songs')->alert('Failed to create database table: '. $e->getMessage());
+        \Drupal::messenger()->addError('Failed to create database table');
+    }
+}
