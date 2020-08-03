@@ -59,10 +59,15 @@ sites/*/*settings*.php
 /.ht.router.php
 /INSTALL.txt
 
+
+
+
 # not in web dir
 .editorconfig
 /vendor
 /.gitattributes
 /composer.json
 /composer.lock
+
+core
 # .gitignore

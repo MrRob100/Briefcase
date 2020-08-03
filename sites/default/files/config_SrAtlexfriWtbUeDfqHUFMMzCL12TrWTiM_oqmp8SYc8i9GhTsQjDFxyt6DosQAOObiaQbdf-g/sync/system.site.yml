@@ -1,11 +1,11 @@
-uuid: b0ff3834-78d9-4aaf-b2d5-be227606fdb5
-name: Briefcase
-mail: Robarnold100@hotmail.com
+uuid: cf110f53-1c8c-4ec2-8b1a-c48440ea306b
+name: 'My website'
+mail: robarnold100@hotmail.com
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /home
+  front: /node
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en
