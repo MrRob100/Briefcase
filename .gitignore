@@ -48,7 +48,11 @@ sites/*/*settings*.php
 /.eslintrc.json
 # /.htaccess
 /sites/default/files/.htaccess
-/autoload.php
+/sites/default/files/css
+/sites/default/files/js
+/sites/default/files/php
+
+autoload.php
 
 /example.gitignore
 /index.php
@@ -65,7 +69,7 @@ sites/*/*settings*.php
 
 # not in web dir
 .editorconfig
-/vendor
+../vendor
 /.gitattributes
 /composer.json
 /composer.lock
