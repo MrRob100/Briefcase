@@ -1,4 +1,4 @@
-uuid: cb5c0d24-4ae2-42d5-9557-2ef3db1a43db
+uuid: 0fc7a5a3-ce78-421f-ac5c-73652ff0225c
 langcode: en
 status: true
 dependencies: {  }
@@ -7,7 +7,7 @@ _core:
 id: feedback
 label: 'Website feedback'
 recipients:
-  - robarnold100@hotmail.com
+  - Robarnold100@hotmail.com
 reply: ''
 weight: 0
 message: 'Your message has been sent.'
