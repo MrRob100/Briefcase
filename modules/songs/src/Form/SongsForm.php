@@ -19,11 +19,6 @@ class SongsForm extends FormBase {
       '#title' => $this->t('Upload tune'),
     ];
 
-    $form['rah'] = [
-      '#type' => 'file',
-      '#title' => $this->t('NEW RAHHHH!!!!'),
-    ];
-
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Upload'),
