@@ -43,10 +43,10 @@ sites/*/*settings*.php
 /sites/example.settings.local.php
 /sites/development.services.yml
 /themes/README.txt
-/.csslintrc
-/.eslintignore
-/.eslintrc.json
-# /.htaccess
+.csslintrc
+.eslintignore
+.eslintrc.json
+.htaccess
 /sites/default/files/.htaccess
 /sites/default/files/css
 /sites/default/files/js
@@ -76,3 +76,4 @@ autoload.php
 
 core
 # .gitignore
+web.config
