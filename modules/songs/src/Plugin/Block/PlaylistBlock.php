@@ -8,12 +8,12 @@ use Drupal\Core\Block\BlockBase;
  * Provides a custom Block.
  *
  * @Block(
- *   id = "record_block",
- *   admin_label = @Translation("Record block"),
- *   category = @Translation("Custom header"),
+ *   id = "playlist_block",
+ *   admin_label = @Translation("Playlist block"),
+ *   category = @Translation("Custom block"),
  * )
  */
-class RecordBlock extends BlockBase {
+class PlaylistBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
@@ -23,7 +23,7 @@ class RecordBlock extends BlockBase {
     $twig = \Drupal::service('twig');
 
     $template = $twig->loadTemplate(
-        drupal_get_path('module', 'songs') . '/templates/record.html.twig'
+        drupal_get_path('module', 'songs') . '/templates/playlist.html.twig'
     );
 
     $build = [
