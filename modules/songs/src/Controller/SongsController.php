@@ -34,7 +34,7 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
   {
 
     $template = $this->twig->loadTemplate(
-      drupal_get_path('module', 'songs') . '/templates/record.html.twig'
+      drupal_get_path('module', 'songs') . '/templates/home.html.twig'
     );
 
     //return val?
