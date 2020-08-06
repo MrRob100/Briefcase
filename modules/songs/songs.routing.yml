@@ -13,6 +13,6 @@ tunes.page:
   # path: 'home'
   defaults:
     _controller: '\Drupal\songs\Controller\SongsController::index'
-    _title: 'songsform3'
+    _title: 'Home'
   requirements:
     _permission: 'access content'

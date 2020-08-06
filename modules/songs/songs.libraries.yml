@@ -1,0 +1,5 @@
+record_player:
+    js:
+        js/record.js: {}
+    css:
+        css/record.css: {}
