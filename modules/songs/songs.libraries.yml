@@ -1,5 +1,8 @@
 record_player:
     js:
         js/record.js: {}
+
+record_style:
     css:
-        css/record.css: {}
+        theme:
+            css/record.css: {}
