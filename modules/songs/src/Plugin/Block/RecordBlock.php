@@ -18,18 +18,29 @@ class RecordBlock extends BlockBase {
   /**
    * {@inheritdoc}
    */
+
   public function build() {
+
+    if ($_SERVER['SERVER_NAME'] === 'localhost') {
+        $root = '..web/';
+    } else {
+        $root = '../';
+    }
 
     $twig = \Drupal::service('twig');
 
     $template = $twig->loadTemplate(
-        drupal_get_path('module', 'songs') . '/templates/record.html.twig'
+        drupal_get_path('module', 'songs') . '/templates/record.html.twig',
     );
 
     $build = [
           'description' => [
           '#type' => 'inline_template',
           '#template' => file_get_contents($template),
+          '#context' => [
+              'my_var' => 'fvvv',
+              'root' => $root
+          ]
         ]
     ];
 
