@@ -10,6 +10,11 @@ body {
   background-color: #fff !important;
 }
 
+#header {
+  background-color: #fff !important;
+  background-image: initial !important;
+}
+
 .case-stages {
   width: 500px;
   margin: auto;
@@ -22,6 +27,27 @@ body {
   bottom: 40%;
   left: 50%;
   width: 40%;
+  transform: translate(-50%, 100px);
+}
+
+/* audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-volume-slider-container
+{
+  display: none !important;
+} */
+
+.case-stages {
+  width: 500px;
+  margin: auto;
+  height: 500px;
+}
+
+.case-stages img {
+  display: none;
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  width: 30%;
   transform: translate(-50%, 100px);
 }
 
