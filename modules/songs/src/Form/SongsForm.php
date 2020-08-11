@@ -32,7 +32,7 @@ class SongsForm extends FormBase {
       $form_field_name = 'song';
       $validators = array('file_validate_extensions' => array("mp3 wav aif"));
 
-      $destination = 'public://songs';    
+      $destination = 'public://songs'; 
 
       $save = file_save_upload($form_field_name, $validators, $destination);
 
@@ -84,7 +84,7 @@ class SongsForm extends FormBase {
         return;
       }
 
-      \Drupal::messenger()->addMessage('Song uploaded successfully 2');
+      \Drupal::messenger()->addMessage('Song uploaded successfully');
     }
 
 }
