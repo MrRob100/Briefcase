@@ -1,0 +1,5 @@
+services:
+    songs.song:
+        class: Drupal\songs\SongService
+        arguments: []
+        tags: []
