@@ -23,7 +23,9 @@ class SongService {
         $connection = \Drupal::database();
 
         $query = $connection->select('songs', 's')
-            ->fields('s', ['name']);
+            ->fields('s', ['name'])
+            ->orderBy('time_uploaded', 'DESC')
+            ->range(0, 2);
 
         try {
             $songs_list = $query->execute()->fetchAll();
