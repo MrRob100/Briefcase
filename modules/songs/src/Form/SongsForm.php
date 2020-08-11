@@ -14,9 +14,9 @@ class SongsForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
 
-    $form['tune'] = [
+    $form['song'] = [
       '#type' => 'file',
-      '#title' => $this->t('Upload tune'),
+      '#title' => $this->t('Upload song'),
     ];
 
     $form['submit'] = [
@@ -31,26 +31,36 @@ class SongsForm extends FormBase {
       
       $form_field_name = 'song';
       $validators = array('file_validate_extensions' => array("mp3 wav aif"));
+
       $destination = 'public://songs';    
 
       $save = file_save_upload($form_field_name, $validators, $destination);
 
-      if (!array_key_exists('0', $save)) {
-        //no file chosen
+      if (is_null($save)) {
 
-        \Drupal::logger('songs')->alert('No file chosen');
-        \Drupal::messenger()->addError('No file chosen');
+          \Drupal::logger('songs')->alert('Failed to upload file (1)');
+          \Drupal::messenger()->addError('Failed to upload file (1)');
         
-        return;
-      }
+          return;
 
-      if ($save[0] === false) { 
-        //wrong file type or other issue uploading & saving
+      } else {
+        if (!array_key_exists('0', $save)) {
+          //no file chosen
 
-        \Drupal::logger('songs')->alert('Failed to upload file');
-        \Drupal::messenger()->addError('Failed to upload file');
-      
-        return;
+          \Drupal::logger('songs')->alert('No file chosen');
+          \Drupal::messenger()->addError('No file chosen');
+          
+          return;
+        }
+
+        if ($save[0] === false) { 
+          //wrong file type or other issue uploading & saving
+
+          \Drupal::logger('songs')->alert('Failed to upload file');
+          \Drupal::messenger()->addError('Failed to upload file');
+        
+          return;
+        }
       }
 
       // create database record
