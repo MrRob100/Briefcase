@@ -28,8 +28,7 @@ class SongsForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
 
-    $ss = $this->songService->test();
-
+    $song_list = $this->songService->read();
 
     $form['song'] = [
       '#type' => 'file',
@@ -40,6 +39,14 @@ class SongsForm extends FormBase {
       '#type' => 'submit',
       '#value' => $this->t('Upload'),
     ];
+
+    foreach ($song_list as $song) {
+
+        $form[$song->name]['#markup'] = t('<p>'.$song->name.'</p>');
+    }
+
+
+
 
     return $form;
     }
