@@ -2,33 +2,16 @@
 
 namespace Drupal\songs\Form;
 
-use \Drupal\Songs\SongService;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class SongsForm extends FormBase {
-
-
-  protected $songService;
-
-  public function __construct(SongService $songService) {
-      $this->songService = $songService;
-  }
-
-  public static function create(ContainerInterface $container) {
-      return new static(
-          $container->get('songs.song')
-      );
-  }
 
   public function getFormId() {
     return 'song_upload';
   }
 
   public function buildForm(array $form, FormStateInterface $form_state) {
-
-    $song_list = $this->songService->read();
 
     $form['song'] = [
       '#type' => 'file',
@@ -39,14 +22,6 @@ class SongsForm extends FormBase {
       '#type' => 'submit',
       '#value' => $this->t('Upload'),
     ];
-
-    foreach ($song_list as $song) {
-
-        $form[$song->name]['#markup'] = t('<p>'.$song->name.'</p>');
-    }
-
-
-
 
     return $form;
     }

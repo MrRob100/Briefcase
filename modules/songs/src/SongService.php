@@ -23,12 +23,12 @@ class SongService {
         $connection = \Drupal::database();
 
         $query = $connection->select('songs', 's')
-            ->fields('s', ['name'])
+            ->fields('s', ['id', 'name'])
             ->orderBy('time_uploaded', 'DESC')
             ->range(0, 2);
 
         try {
-            $songs_list = $query->execute()->fetchAll();
+            $songs_list = $query->execute()->fetchAllAssoc('id');
         } catch (\Exception $e) {
 
             \Drupal::logger('songs')->alert('Failed to query database: '. $e->getMessage());
@@ -44,7 +44,9 @@ class SongService {
         //not yet
     }
 
+
+
     public function delete($id) {
-        //
+        dd('delete!!');
     }
 }

@@ -77,3 +77,4 @@ autoload.php
 core
 # .gitignore
 web.config
+ExampleBlockForm.php
