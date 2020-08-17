@@ -43,6 +43,8 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
 
         $twig = \Drupal::service('twig');
 
+        $songs = $this->songService->read();
+
         $template = $twig->loadTemplate(
             drupal_get_path('module', 'songs') . '/templates/playlist2.html.twig'
         );
@@ -51,6 +53,9 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
               'description' => [
               '#type' => 'inline_template',
               '#template' => file_get_contents($template),
+              '#context' => [
+                  'songs' => $songs
+              ]
             ]
         ];
 

@@ -1,1 +1,7 @@
-<h1>OUTPUT PLAYLIST STUFF FROM PLAYLISTBLOCK2</h1>
+<div class="playlist">
+    <ul>
+    {% for song in songs %}
+        <li>{{ song.name }}</li>
+    {% endfor %}
+    </ul>
+</div>

@@ -34,7 +34,7 @@ class SongService {
             \Drupal::logger('songs')->alert('Failed to query database: '. $e->getMessage());
             \Drupal::messenger()->addError('Failed to query database: '. $e->getMessage());
 
-            return;
+            return [];
         }
 
         return $songs_list;

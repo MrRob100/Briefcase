@@ -39,7 +39,6 @@ class RecordBlock extends BlockBase {
           '#type' => 'inline_template',
           '#template' => file_get_contents($template),
           '#context' => [
-              'my_var' => 'fvvv',
               'root' => $root
           ]
         ]
