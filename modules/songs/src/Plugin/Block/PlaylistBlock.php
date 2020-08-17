@@ -2,6 +2,7 @@
 
 namespace Drupal\songs\Plugin\Block;
 
+use Drupal\Songs\SongService;
 use Drupal\Core\Block\BlockBase;
 
 /**
@@ -15,26 +16,28 @@ use Drupal\Core\Block\BlockBase;
  */
 class PlaylistBlock extends BlockBase {
 
-  /**
-   * {@inheritdoc}
-   */
-  public function build() {
+    /**
+     * {@inheritdoc}
+     */
+    public function build() {
 
-    $twig = \Drupal::service('twig');
+        // dd($this->songService);
 
-    $template = $twig->loadTemplate(
-        drupal_get_path('module', 'songs') . '/templates/playlist.html.twig'
-    );
+        $twig = \Drupal::service('twig');
 
-    $build = [
-          'description' => [
-          '#type' => 'inline_template',
-          '#template' => file_get_contents($template),
-        ]
-    ];
+        $template = $twig->loadTemplate(
+            drupal_get_path('module', 'songs') . '/templates/playlist.html.twig'
+        );
 
-    return $build;
+        $build = [
+              'description' => [
+              '#type' => 'inline_template',
+              '#template' => file_get_contents($template),
+            ]
+        ];
 
-  }
+        return $build;
+
+    }
 
 }
