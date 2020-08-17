@@ -2,7 +2,10 @@
     <p>ADMIN</p>
     <ul>
     {% for song in songs %}
-        <li>{{ song.name }}</li>
+        <div>
+            <a href="{{ path('songs.delete', {'id': '1'}) }}"><p>Delete<p></a>
+            <li>{{ song.name }}</li>    
+        </div>
     {% endfor %}
     </ul>
 </div>

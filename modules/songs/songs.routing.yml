@@ -7,7 +7,15 @@ songs.form:
   requirements:
     _permission: 'administer site configuration'
 
-#works
+songs.delete:
+  path: 'admin/songs/delete/{id}'
+  defaults:
+    _controller: '\Drupal\songs\Controller\SongsController::delete'
+    _title: 'Delete'
+  requirements:
+    _permission: 'administer site configuration'
+
+#works (MAYBE DELETE)
 tunes.page:
   path: 'home2'
   # path: 'home'
@@ -16,3 +24,4 @@ tunes.page:
     _title: 'Home'
   requirements:
     _permission: 'access content'
+

@@ -49,4 +49,9 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
     return $build;
 
   }
+
+  public function delete($id)
+  {
+    dd("RAHH DELETE!");
+  }
 }
