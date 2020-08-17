@@ -42,11 +42,14 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
     public function build() {
 
         $twig = \Drupal::service('twig');
+        $route_name = \Drupal::routeMatch()->getRouteName();
+
+        $template = $route_name === 'tunes.page' ? 'playlist-front' : 'playlist-admin';
 
         $songs = $this->songService->read();
 
         $template = $twig->loadTemplate(
-            drupal_get_path('module', 'songs') . '/templates/playlist2.html.twig'
+            drupal_get_path('module', 'songs') . '/templates/'.$template.'.html.twig'
         );
 
         $build = [
@@ -54,7 +57,8 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
               '#type' => 'inline_template',
               '#template' => file_get_contents($template),
               '#context' => [
-                  'songs' => $songs
+                  'songs' => $songs,
+                  'route_name' => $route_name
               ]
             ]
         ];

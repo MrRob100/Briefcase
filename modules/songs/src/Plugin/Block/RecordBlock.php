@@ -21,12 +21,7 @@ class RecordBlock extends BlockBase {
 
   public function build() {
 
-    //copy var carry in then delete
-    if ($_SERVER['SERVER_NAME'] === 'localhost') {
-        $root = '..web/';
-    } else {
-        $root = '../';
-    }
+    $root = $_SERVER['SERVER_NAME'] === 'localhost' ? '.../web/' : '../';
 
     $twig = \Drupal::service('twig');
 
