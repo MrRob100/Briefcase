@@ -61,7 +61,7 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
   public function admin()
   {
 
-      $songs = 'array of songs';
+      $songs = $this->songService->read();
 
       $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
 
