@@ -1,4 +1,4 @@
 tunes:
-  title: 'Songs management'
+  title: 'Songs Admin'
   route_name: songs.admin
   parent: system.admin
