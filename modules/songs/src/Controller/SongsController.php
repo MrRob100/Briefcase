@@ -84,9 +84,10 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
         //delete file
         $resp = $this->songService->delete($id);
 
+        return $this->redirect('songs.admin');
+
         //need a return value? yes, might need to be a redirect
 
-        return $resp;
     }
 
 }

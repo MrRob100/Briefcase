@@ -25,7 +25,7 @@ class SongService {
         $query = $connection->select('songs', 's')
             ->fields('s', ['id', 'name'])
             ->orderBy('time_uploaded', 'DESC')
-            ->range(0, 2);
+            ->range(0, 4);
 
         try {
             $songs_list = $query->execute()->fetchAllAssoc('id');
