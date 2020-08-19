@@ -13,15 +13,26 @@ class SongsForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
 
+    // $form['#attributes'] = array('enctype' => "multipart/form-data");
+
+    // $form['#attributes']['enctype'] = "multipart/form-data";
+
+    // $form['enctype'] = 'multipart/form-data';
+
     $form['song'] = [
+      '#id' => 'song_input',
       '#type' => 'file',
-      '#title' => $this->t('Upload song'),
+      '#title' => $this->t('Upload song (form in form)'),
     ];
 
     $form['submit'] = [
+      '#id' => 'song_submit',
       '#type' => 'submit',
       '#value' => $this->t('Upload'),
     ];
+
+    /* renders playlist but not form above */
+    // $form['#theme'] = 'tunes_admin_form';
 
     return $form;
     }

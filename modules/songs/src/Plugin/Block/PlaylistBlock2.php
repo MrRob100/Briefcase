@@ -44,6 +44,7 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
         $twig = \Drupal::service('twig');
         $route_name = \Drupal::routeMatch()->getRouteName();
 
+        /* May not need route name logic anymore */
         $template = $route_name === 'tunes.page' ? 'playlist-front' : 'playlist-admin';
 
         $songs = $this->songService->read();

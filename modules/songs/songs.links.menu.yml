@@ -1,5 +1,4 @@
 tunes:
   title: 'Songs management'
-  route_name: songs.form
-  # parent: system.admin_structure
+  route_name: songs.admin
   parent: system.admin

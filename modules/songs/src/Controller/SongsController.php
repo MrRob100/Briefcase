@@ -1,10 +1,11 @@
 <?php 
 namespace Drupal\songs\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Songs\SongService;
 use Drupal\Core\Template\TwigEnvironment;
+use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 
 class SongsController extends ControllerBase implements ContainerInjectionInterface 
 {
@@ -13,16 +14,23 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
   */
   protected $twig;
 
-  public function __construct(TwigEnvironment $twig)
+  /**
+   * 
+   */
+  protected $songService;
+
+  public function __construct(TwigEnvironment $twig, SongService $songService)
   {
-    $this->twig = $twig;
+      $this->twig = $twig;
+      $this->songService = $songService;
   }
 
   public static function create(ContainerInterface $container)
   {
-    return new static(
-      $container->get('twig')
-    );
+      return new static(
+          $container->get('twig'),
+          $container->get('songs.song')
+      );
   }
 
   /**
@@ -50,8 +58,53 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
 
   }
 
+  public function admin()
+  {
+
+      $songs = 'array of songs';
+
+      $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
+
+      $form['field']['value'] = 'From controller';
+      $twig = \Drupal::service('twig');
+
+      $template = 'tunes-admin-form';
+
+      $template = $twig->loadTemplate(
+          drupal_get_path('module', 'songs') . '/templates/'.$template.'.html.twig'
+      );
+
+      $build = [
+            'description' => [
+            '#type' => 'inline_template',
+            '#template' => file_get_contents($template),
+            '#context' => [
+                'form' => $form,
+                'songs' => $songs,
+            ]
+          ]
+      ];
+
+      return $build;
+  
+  }
+
+  public function upload() 
+  {
+      dd($_FILES);
+  }
+
   public function delete($id)
   {
-    dd("RAHH DELETE!");
+      //delete record in db
+
+
+      //delete file
+      $resp = $this->songService->delete($id);
+
+      //need a return value? yes, might need to be a redirect
+
+      return $resp;
   }
+
 }
