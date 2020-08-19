@@ -9,102 +9,84 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 
 class SongsController extends ControllerBase implements ContainerInjectionInterface 
 {
-  /**
-  * @var Drupal\Core\Template\TwigEnvironment
-  */
-  protected $twig;
+    /**
+     * @var Drupal\Core\Template\TwigEnvironment
+    */
+    protected $twig;
 
-  /**
-   * 
-   */
-  protected $songService;
+    /**
+     * 
+     */
+    protected $songService;
 
-  public function __construct(TwigEnvironment $twig, SongService $songService)
-  {
-      $this->twig = $twig;
-      $this->songService = $songService;
-  }
+    public function __construct(TwigEnvironment $twig, SongService $songService)
+    {
+        $this->twig = $twig;
+        $this->songService = $songService;
+    }
 
-  public static function create(ContainerInterface $container)
-  {
-      return new static(
-          $container->get('twig'),
-          $container->get('songs.song')
-      );
-  }
+    public static function create(ContainerInterface $container)
+    {
+        return new static(
+            $container->get('twig'),
+            $container->get('songs.song')
+        );
+    }
 
-  /**
-   * index
-   * @param  string $name
-   * @return string
-   */
-  public function index($name = 'hello') 
-  {
+    /**
+     * index
+     */
+    public function index() 
+    {
 
-    $template = $this->twig->loadTemplate(
-      drupal_get_path('module', 'songs') . '/templates/home.html.twig'
-    );
+        return [];
+    }
 
-    //return val?
+    /**
+     * Displays admin page to upload, view and delete songs
+     */
+    public function admin()
+    {
 
-    $build = [
-      'description' => [
-        '#type' => 'inline_template',
-        '#template' => file_get_contents($template),
-      ]
-      ];
+        $songs = $this->songService->read();
 
-    return $build;
+        $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
 
-  }
+        $form['field']['value'] = 'From controller';
+        $twig = \Drupal::service('twig');
 
-  public function admin()
-  {
+        $template = 'tunes-admin-form';
 
-      $songs = $this->songService->read();
+        $template = $twig->loadTemplate(
+            drupal_get_path('module', 'songs') . '/templates/'.$template.'.html.twig'
+        );
 
-      $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
-
-      $form['field']['value'] = 'From controller';
-      $twig = \Drupal::service('twig');
-
-      $template = 'tunes-admin-form';
-
-      $template = $twig->loadTemplate(
-          drupal_get_path('module', 'songs') . '/templates/'.$template.'.html.twig'
-      );
-
-      $build = [
-            'description' => [
-            '#type' => 'inline_template',
-            '#template' => file_get_contents($template),
-            '#context' => [
-                'form' => $form,
-                'songs' => $songs,
+        $build = [
+                'description' => [
+                '#type' => 'inline_template',
+                '#template' => file_get_contents($template),
+                '#context' => [
+                    'form' => $form,
+                    'songs' => $songs,
+                ]
             ]
-          ]
-      ];
+        ];
 
-      return $build;
-  
-  }
+        return $build;
+    
+    }
 
-  public function upload() 
-  {
-      dd($_FILES);
-  }
-
-  public function delete($id)
-  {
-      //delete record in db
+    public function delete($id)
+    {
+        //delete record in db
 
 
-      //delete file
-      $resp = $this->songService->delete($id);
+        //delete file
+        $resp = $this->songService->delete($id);
 
-      //need a return value? yes, might need to be a redirect
+        //need a return value? yes, might need to be a redirect
 
-      return $resp;
-  }
+        return $resp;
+    }
 
 }

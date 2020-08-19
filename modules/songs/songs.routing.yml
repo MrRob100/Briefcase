@@ -1,7 +1,6 @@
 songs.form:
   path: 'admin/songs/form'
   defaults:
-    # _controller: '\Drupal\songs\Controller\SongsController::index'
     _form: '\Drupal\songs\Form\SongsForm'
     _title: 'songsform'
   requirements:
@@ -23,18 +22,8 @@ songs.delete:
   requirements:
     _permission: 'administer site configuration'
 
-songs.upload:
-  path: 'admin/song-upload'
-  defaults:
-    _controller: '\Drupal\songs\Controller\SongsController::upload'
-  methods: [POST]
-  requirements:
-    _permission: 'administer site configuration'
-
-#works (MAYBE DELETE)
-tunes.page:
+songs.page:
   path: 'home2'
-  # path: 'home'
   defaults:
     _controller: '\Drupal\songs\Controller\SongsController::index'
     _title: 'Home'
