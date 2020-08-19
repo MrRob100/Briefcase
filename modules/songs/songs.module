@@ -3,7 +3,7 @@
 function songs_theme() {
     return [
         'tunes_admin_form' => [
-            'render element' => 'form,'
+            'render element' => 'form'
         ]
     ];
 }
