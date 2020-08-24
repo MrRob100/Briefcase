@@ -11,3 +11,10 @@
     {% endfor %}
     </ul>
 </div>
+{% if prev %}
+<a href="{{ path('songs.admin', {'page': page - 1}) }}">Previous</a>
+{% endif %}
+
+{% if next %}
+<a href="{{ path('songs.admin', {'page': page + 1}) }}">Next</a>
+{% endif %}

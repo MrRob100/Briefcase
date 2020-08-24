@@ -48,7 +48,17 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
     public function admin($page = 1)
     {
 
+        if ($page > 1) {
+            $page = $page;
+            $prev = true;
+        } else {
+            $page = 1;
+            $prev = false;
+        }
+
         $songs = $this->songService->read($page);
+
+        $next = sizeof($songs) > 0 ? true : false;
 
         $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
 
@@ -68,6 +78,9 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
                 '#context' => [
                     'form' => $form,
                     'songs' => $songs,
+                    'page' => $page,
+                    'prev' => $prev,
+                    'next' => $next
                 ]
             ]
         ];
