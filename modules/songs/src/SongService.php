@@ -18,14 +18,22 @@ class SongService {
     /**
      * Returns all songs (paginated)
      */
-    public function read() {
+    public function read($page) {
 
         $connection = \Drupal::database();
+
+        $per_page = 3;
+
+        $lower = ($page - 1) * $per_page;
+
 
         $query = $connection->select('songs', 's')
             ->fields('s', ['id', 'name'])
             ->orderBy('time_uploaded', 'DESC')
-            ->range(0, 4);
+            ->range($lower, $per_page);
+            // ->range(0, 3); //1
+            // ->range(3, 3); //2
+            // ->range(6, 3); //3
 
         try {
             $songs_list = $query->execute()->fetchAllAssoc('id');
@@ -61,8 +69,12 @@ class SongService {
         
         } catch (\Exception $e) {
 
-            \Drupal::logger('songs')->alert('Failed to query database: '. $e->getMessage());
-            \Drupal::messenger()->addError('Failed to query database: '. $e->getMessage());
+            $message = 'Failed to query database: '. $e->getMessage();
+
+            \Drupal::logger('songs')->alert($message);
+            \Drupal::messenger()->addError($message);
+
+            return $message;
 
         }
 
@@ -72,8 +84,12 @@ class SongService {
         
         } catch (\Exception $e) {
 
-            \Drupal::logger('songs')->alert('Failed to delete file: '.$name.' '.$e->getMessage());
-            \Drupal::messenger()->addError('Failed to delete file: '.$name.' '.$e->getMessage());
+            $message = 'Failed to delete file: '.$name.' '.$e->getMessage();
+
+            \Drupal::logger('songs')->alert($message);
+            \Drupal::messenger()->addError($message);
+
+            return $message;
 
         }
 
@@ -84,16 +100,19 @@ class SongService {
 
         try {
             $response = $query->execute();
-            \Drupal::logger('songs')->alert(json_encode($response));
 
         } catch (\Exception $e) {
 
-            \Drupal::logger('songs')->alert('Failed to delete record '.$id.'in database: '. $e->getMessage());
-            \Drupal::messenger()->addError('Failed to delete record '.$id.'in database: '. $e->getMessage());
+            $message = 'Failed to delete record '.$id.'in database: '. $e->getMessage();
+
+            \Drupal::logger('songs')->alert($message);
+            \Drupal::messenger()->addError($message);
+
+            return $message;
 
         }
 
-        return;
+        return 'Song deleted successfully';
 
     }
 

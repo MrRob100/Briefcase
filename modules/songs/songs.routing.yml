@@ -7,10 +7,11 @@ songs.form:
     _permission: 'administer site configuration'
 
 songs.admin:
-  path: 'admin/songs'
+  path: 'admin/songs/{page}'
   defaults:
     _controller: '\Drupal\songs\Controller\SongsController::admin'
     _title: 'songsform'
+    page: '1'
   requirements:
     _permission: 'administer site configuration'
 

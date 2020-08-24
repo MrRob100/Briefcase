@@ -45,10 +45,10 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
     /**
      * Displays admin page to upload, view and delete songs
      */
-    public function admin()
+    public function admin($page = 1)
     {
 
-        $songs = $this->songService->read();
+        $songs = $this->songService->read($page);
 
         $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
 
@@ -78,15 +78,12 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
 
     public function delete($id)
     {
-        //delete record in db
 
-
-        //delete file
         $resp = $this->songService->delete($id);
 
-        return $this->redirect('songs.admin');
+        \Drupal::messenger()->addMessage($resp);
 
-        //need a return value? yes, might need to be a redirect
+        return $this->redirect('songs.admin');
 
     }
 
