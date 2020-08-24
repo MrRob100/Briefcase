@@ -1,10 +1,12 @@
+{{ attach_library('songs/songs_style') }}
 {{ form }}
 <div class="playlist">
     <ul>
     {% for song in songs %}
         <div>
-            <li>{{ song.name }}</li>   
-            <a href="{{ path('songs.delete', {'id': song.id}) }}"><p>Delete<p></a> 
+            <li>{{ song.name }}
+            <a href="{{ path('songs.delete', {'id': song.id}) }}">Delete</a>             
+            </li>   
         </div>
     {% endfor %}
     </ul>
