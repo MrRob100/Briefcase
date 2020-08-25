@@ -4,10 +4,6 @@ namespace Drupal\Songs;
 
 class SongService {
 
-    public function test() {
-        return 'lala';
-    }
-
     /**
      * writes song record to db and 
      */
@@ -31,9 +27,6 @@ class SongService {
             ->fields('s', ['id', 'name'])
             ->orderBy('time_uploaded', 'DESC')
             ->range($lower, $per_page);
-            // ->range(0, 3); //1
-            // ->range(3, 3); //2
-            // ->range(6, 3); //3
 
         try {
             $songs_list = $query->execute()->fetchAllAssoc('id');

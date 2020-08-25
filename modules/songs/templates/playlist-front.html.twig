@@ -6,3 +6,13 @@
     {% endfor %}
     </ul>
 </div>
+
+{% if prev %}
+<a href="?page={{ page - 1 }}">Previous</a>
+{% endif %}
+
+{% if next %}
+<a href="?page={{ page + 1 }}">Next</a>
+{% endif %}
+
+<p>Page: {{ page }}</p>

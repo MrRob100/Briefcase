@@ -44,28 +44,48 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
         $twig = \Drupal::service('twig');
         $route_name = \Drupal::routeMatch()->getRouteName();
 
-        /* May not need route name logic anymore */
         $template = 'playlist-front';
 
-        $songs = $this->songService->read();
+        $page = \Drupal::request()->query->get('page') ;
+
+        if ($page > 1) {
+            $page = $page;
+            $prev = true;
+        } else {
+            $page = 1;
+            $prev = false;
+        }
+
+        $songs = $this->songService->read($page);
+
+        $next = sizeof($songs) > 0 ? true : false;
 
         $template = $twig->loadTemplate(
             drupal_get_path('module', 'songs') . '/templates/'.$template.'.html.twig'
         );
 
         $build = [
-              'description' => [
-              '#type' => 'inline_template',
-              '#template' => file_get_contents($template),
-              '#context' => [
-                  'songs' => $songs,
-                  'route_name' => $route_name
-              ]
+                'description' => [
+                '#type' => 'inline_template',
+                '#template' => file_get_contents($template),
+                '#context' => [
+                    'songs' => $songs,
+                    'route_name' => $route_name,
+                    'page' => $page,
+                    'prev' => $prev,
+                    'next' => $next
+                ]
             ]
         ];
 
         return $build;
 
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheMaxAge() {
+        return 0;
     }
 
 }
