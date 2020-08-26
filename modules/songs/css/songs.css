@@ -1,4 +1,21 @@
 .playlist {
-    height: 35px;
+    height: 60px;
     overflow: scroll;
+}
+
+.list-item-song {
+    list-style-type: none;
+}
+
+.list-item-song:hover {
+  cursor: pointer;
+  background-color: antiquewhite;
+}
+
+#audio-container audio {
+    width: 100%;
+}
+
+.playing {
+    background-color: burlywood;
 }

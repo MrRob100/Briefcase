@@ -1,8 +1,18 @@
+{{ attach_library('songs/songs_style') }}
+{{ attach_library('songs/songs_player') }}
+
+<div id="audio-container" data-url="{{ url }}">
+</div>
+
 <div class="playlist">
-    <p>FRONT</p>
     <ul>
     {% for song in songs %}
-        <li>{{ song.name }}</li>
+        <div>
+            <li 
+                class="list-item-song" 
+                data-fn="{{ song.name }}"
+            >{{ song.name }}</li>  
+        </div>
     {% endfor %}
     </ul>
 </div>

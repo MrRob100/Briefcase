@@ -58,7 +58,8 @@ class SongsController extends ControllerBase implements ContainerInjectionInterf
 
         $songs = $this->songService->read($page);
 
-        $next = sizeof($songs) > 0 ? true : false;
+        /* detects if there is next page */
+        $next = $this->songService->is_next($page);
 
         $form = \Drupal::formBuilder()->getForm('Drupal\songs\Form\SongsForm');
 

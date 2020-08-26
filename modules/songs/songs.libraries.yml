@@ -2,6 +2,10 @@ record_player:
     js:
         js/record.js: {}
 
+songs_player:
+    js:
+        js/songsPlayer.js: {}
+
 record_style:
     css:
         theme:

@@ -46,7 +46,10 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
 
         $template = 'playlist-front';
 
-        $page = \Drupal::request()->query->get('page') ;
+        $url = \Drupal::request()->getSchemeAndHttpHost() . \Drupal::request()->getBaseUrl();
+
+        /* pagination logic */
+        $page = \Drupal::request()->query->get('page');
 
         if ($page > 1) {
             $page = $page;
@@ -56,9 +59,14 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
             $prev = false;
         }
 
+        /* songs logic */
         $songs = $this->songService->read($page);
+        // $toplay = \Drupal::request()->query->get('play') ;
 
-        $next = sizeof($songs) > 0 ? true : false;
+        $toplay = reset($songs)->name;
+
+        /* detects if there is next page */
+        $next = $this->songService->is_next($page);
 
         $template = $twig->loadTemplate(
             drupal_get_path('module', 'songs') . '/templates/'.$template.'.html.twig'
@@ -73,7 +81,9 @@ class PlaylistBlock2 extends BlockBase implements ContainerFactoryPluginInterfac
                     'route_name' => $route_name,
                     'page' => $page,
                     'prev' => $prev,
-                    'next' => $next
+                    'next' => $next,
+                    'url' => $url,
+                    'toplay' => $toplay
                 ]
             ]
         ];

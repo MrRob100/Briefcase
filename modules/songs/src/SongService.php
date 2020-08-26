@@ -18,10 +18,9 @@ class SongService {
 
         $connection = \Drupal::database();
 
-        $per_page = 3;
+        $per_page = 5;
 
         $lower = ($page - 1) * $per_page;
-
 
         $query = $connection->select('songs', 's')
             ->fields('s', ['id', 'name'])
@@ -39,6 +38,18 @@ class SongService {
         }
 
         return $songs_list;
+    }
+
+    /**
+    * Checks if there is a next page of results
+    *
+    * @param int $page current page of results
+    * @return bool is next page of results
+    */
+    public function is_next($page) {
+        /* detects if there is next page */
+        $songs_next = $this->read($page + 1);
+        return sizeof($songs_next) > 0 ? true : false;
     }
 
     public function update($id) {
