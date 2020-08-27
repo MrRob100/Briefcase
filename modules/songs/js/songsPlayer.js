@@ -2,6 +2,7 @@ window.addEventListener('load', function () {
 
     var i = 0;
     newAudio(i, "audio/mpeg");
+    buttonLogic();
 
 });
 
@@ -53,6 +54,9 @@ function newAudio(i, type) {
 
     audio.onended = function () {
 
+        /* run button logic */
+        buttonLogic();
+
         /* find item thats playing then add 1 to it */
         var item = getPlaying();
         var i = parseInt(item.dataset.i);
@@ -84,6 +88,52 @@ function newAudio(i, type) {
     }
 
 }
+
+/**
+ * overlay button
+ */
+
+function buttonLogic() {
+
+    var rplay = document.getElementById("r-play");
+    var rstop = document.getElementById("r-stop");
+
+    var audio = document.querySelector("audio");
+
+    // console.log('ap', audio.paused);
+
+    if (audio.paused) {
+
+        // console.log('apparently paying');
+
+        //playing
+        rplay.style.display = "none";
+        rstop.style.display = "block";
+
+    } else {
+
+        //not playing
+        rplay.style.display = "block";
+        rstop.style.display = "none";
+
+
+    }
+
+    rplay.onclick = function() {
+        audio.play();
+        rplay.style.display = "none";
+        rstop.style.display = "block";
+    }
+
+    rstop.onclick = function() {
+        audio.pause();
+        rplay.style.display = "block";
+        rstop.style.display = "none";
+    }
+}
+
+
+
 
 
 
