@@ -11,6 +11,7 @@ function newAudio(i, type) {
 
     var toPlay = list[i].dataset.fn;
     list[i].classList.add('playing');
+    list[i].setAttribute("data-playing", true);
 
     // var type = "audio/mpeg";
 
@@ -28,31 +29,58 @@ function newAudio(i, type) {
 
     var audio = document.querySelector("audio");
 
-
+    var inc = 0;
     for (let item of list) {
+
+        /* sets all i's */
+        item.setAttribute("data-i", inc);
+
         item.onclick = function () {
-            ae.setAttribute("src", url + "/sites/default/files/songs/" + item.dataset.fn);
+
+            /** sorts out playing class */
+            getPlaying().classList.remove('playing');
             item.classList.add('playing');
+
+            ae.setAttribute("src", url + "/sites/default/files/songs/" + item.dataset.fn);
+
+            wasplaying = getPlaying().setAttribute("data-playing", "false");
+
+            item.setAttribute("data-playing", "true");
         }
+
+        inc++;
     }
 
     audio.onended = function () {
 
-        list[i].classList.remove('playing');
+        /* find item thats playing then add 1 to it */
+        var item = getPlaying();
+        var i = parseInt(item.dataset.i);
 
-        i = i + 1;
+        /* remove playing data attribute from it */
+        item.setAttribute("data-playing", "false");
+
+        /* add playing data attribute to new */
+        list[i + 1].setAttribute("data-playing", "true");
 
         /* playing highlighted */
-        list[i].classList.add('playing');
+        list[i].classList.remove('playing');
+        list[i + 1].classList.add('playing');
 
-        var toPlay2 = list[i].dataset.fn;
+        var toPlay2 = list[i + 1].dataset.fn;
 
         var src2 = document.getElementById("audio-container").dataset.url + "/sites/default/files/songs/" + toPlay2;
         ae.setAttribute("src", src2);
     }
 
-    function playclicked(songname) {
-        console.log('play', songname);
+    function getPlaying() {
+        var list = document.getElementsByClassName('list-item-song');
+        for (let item of list) {
+            if (item.dataset.playing == "true") {
+                return item;
+            }
+        }
+
     }
 
 }
