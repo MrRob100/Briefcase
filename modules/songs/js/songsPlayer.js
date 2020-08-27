@@ -100,24 +100,21 @@ function buttonLogic() {
 
     var audio = document.querySelector("audio");
 
-    // console.log('ap', audio.paused);
+    setTimeout(function() {
 
-    if (audio.paused) {
+        if (!audio.paused) {
+            //playing
+            rplay.style.display = "none";
+            rstop.style.display = "block";
 
-        // console.log('apparently paying');
+        } else {
+            //not playing
+            rplay.style.display = "block";
+            rstop.style.display = "none";
+        }
 
-        //playing
-        rplay.style.display = "none";
-        rstop.style.display = "block";
+    }, 1000);
 
-    } else {
-
-        //not playing
-        rplay.style.display = "block";
-        rstop.style.display = "none";
-
-
-    }
 
     rplay.onclick = function() {
         audio.play();
