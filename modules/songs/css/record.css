@@ -17,33 +17,18 @@ body {
   height: 500px;
 }
 
+@media (max-width: 600px) {
+  .case-stages {
+    height: 150px;
+  }
+}
+
 .case-stages img {
   display: none;
   position: absolute;
   bottom: 40%;
   left: 50%;
   width: 40%;
-  transform: translate(-50%, 100px);
-}
-
-/* audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-volume-slider-container
-{
-  display: none !important;
-} */
-
-.case-stages {
-  width: 500px;
-  margin: auto;
-  height: 500px;
-}
-
-.case-stages img {
-  display: none;
-  position: absolute;
-  bottom: 40%;
-  left: 50%;
-  width: 30%;
   transform: translate(-50%, 100px);
 }
 
