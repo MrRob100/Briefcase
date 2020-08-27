@@ -17,12 +17,6 @@ body {
   height: 500px;
 }
 
-@media (max-width: 600px) {
-  .case-stages {
-    height: 150px;
-  }
-}
-
 .case-stages img {
   display: none;
   position: absolute;
@@ -30,6 +24,17 @@ body {
   left: 50%;
   width: 40%;
   transform: translate(-50%, 100px);
+}
+
+@media (max-width: 600px) {
+  .case-stages {
+    height: 150px;
+  }
+
+  .case-stages img {
+    bottom: 60%;
+  }
+
 }
 
 /* audio::-webkit-media-controls-volume-slider,
