@@ -100,7 +100,7 @@ function buttonLogic() {
 
     var audio = document.querySelector("audio");
 
-    setTimeout(function() {
+    setInterval(function() {
 
         if (!audio.paused) {
             //playing

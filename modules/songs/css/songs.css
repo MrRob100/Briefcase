@@ -4,9 +4,14 @@
     overflow: scroll;
 }
 
+.songs-front-list {
+    padding: 0 !important;
+}
+
 .list-item-song {
     list-style-type: none;
     margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .list-item-song:hover {
