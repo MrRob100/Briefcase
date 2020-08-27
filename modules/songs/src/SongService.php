@@ -18,7 +18,7 @@ class SongService {
 
         $connection = \Drupal::database();
 
-        $per_page = 5;
+        $per_page = 10;
 
         $lower = ($page - 1) * $per_page;
 

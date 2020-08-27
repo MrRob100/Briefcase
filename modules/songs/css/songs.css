@@ -1,5 +1,6 @@
 .playlist {
-    height: 60px;
+    height: 100%;
+    /* height: 60px; */
     overflow: scroll;
 }
 
