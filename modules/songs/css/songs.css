@@ -6,6 +6,7 @@
 
 .list-item-song {
     list-style-type: none;
+    margin-bottom: 10px;
 }
 
 .list-item-song:hover {
